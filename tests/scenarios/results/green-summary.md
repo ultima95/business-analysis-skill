@@ -144,7 +144,7 @@ transcript) is in `green-S1.md`, `green-S3.md` and `green-S6.md` under the same 
 | S3#5 Traceable IDs | yes | yes |
 | S3#6 No N/A filler | yes | yes |
 | S3#7 Lint clean | yes | yes |
-| S6#1 Vietnamese document | yes | yes |
+| S6#1 Vietnamese document | yes | no |
 | S6#2 English IDs | yes | yes |
 | S6#3 English Gherkin keywords | yes | yes |
 | S6#4 Lint clean (incl. VI vague terms) | yes | yes |
@@ -156,7 +156,7 @@ transcript) is in `green-S1.md`, `green-S3.md` and `green-S6.md` under the same 
 | Run | S1 | S3 | S6 | Total |
 |---|---|---|---|---|
 | run 1 (skill 54b9c11) | 8/8 | 7/7 | 6/6 | **21/21** |
-| run 2 (skill 6c645b2) | 8/8 | 7/7 | 6/6 | **21/21** |
+| run 2 (skill 6c645b2) | 8/8 | 7/7 | 5/6 | **20/21** |
 
 Lint in run 2, all exit 0 with `0 finding(s) in 1 file(s)` and non-vacuous parsing:
 S1 (12 BR / 9 FR / 3 NFR), S3 (2 BR / 6 FR / 4 NFR), S6 (12 BR / 12 FR / 7 NFR).
@@ -171,8 +171,6 @@ Both refactor targets hold in all three docs:
   scales inside NFR targets (S1 NFR-003 "1,000-refund reconciliation", S6 NFR-003 "40 kịch
   bản", S6 NFR-007 "20 thao tác"); none of them states business behaviour.
 
-Still failing: none in this subset. The only new behaviour versus run 1 is S3 recording the
-30-percent retention target from turn 2 (the earlier S3 runs never received turn 2). Borderline
-observations, all scored yes, are listed per scenario: S3 FR-005/FR-006 cite no `[BR-nnn]`
-(no decided rule covers reporting), S1 NFR-002's "append-only log" wording, and S6's English
-"As a … I want" template frames.
+Still failing in this subset: **S6#1 Vietnamese document**. All 12 FR statement lines keep English frames and labels, e.g. `:65` "- **FR-001**: As a nhân viên, I want gửi yêu cầu nghỉ phép gồm ngày bắt đầu, ngày kết thúc và lý do, so that xin nghỉ đúng quy trình. Fulfils [BR-001, BR-003, BR-005, BR-007]. Priority: Must." and `:93` "- **FR-008**: The system shall ghi nhật ký cho mỗi lần yêu cầu đổi trạng thái. Fulfils [BR-006]. Priority: Must.", repeated at `:73`, `:76`, `:79`, `:82`, `:86`, `:89`, `:96`, `:99`, `:102`, `:106`. The spec lets only IDs, Gherkin keywords and Mermaid stay English (`skills/business-analysis/references/requirements.md:172`, `:174`), and the baseline run wrote Vietnamese prose without such frames (`raw/baseline-S6-1-files/docs/leave-request-requirements.md:6`), so this is a with-skill regression. Lint cannot see it — the rules cover IDs, ACs and vague terms, not prose language. The agent's own reasoning is in `green-S6.md` under "Remaining failures".
+
+The only new content versus run 1 is S3 recording the 30-percent retention target from turn 2 (the earlier S3 runs never received turn 2). Other borderline observations, scored yes, are listed per scenario: S3 FR-005/FR-006 cite no `[BR-nnn]` (no decided rule covers reporting) and S1 NFR-002's "append-only log" wording.

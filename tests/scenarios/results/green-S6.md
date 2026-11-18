@@ -42,18 +42,21 @@ prompt and rubric, turn 2 delivered.
 | Git status | `raw/green-S6-2-files/_git-status.txt` |
 | Lint | `python3 skills/business-analysis/scripts/lint_requirements.py <doc>` → exit 0, `0 finding(s) in 1 file(s)` — non-vacuous: 12 `BR-nnn` blocks, 12 `FR-nnn` definitions and 7 `NFR` rows were parsed, so the VI `vague-term` rule ran |
 
+S6#1 was scored `yes` on first pass and re-scored `no` after review; the evidence cell and
+the score below are the corrected ones.
+
 ### Rubric
 
 | # | Check | yes/no | Evidence |
 |---|---|---|---|
-| 1 | Vietnamese document | yes | `:1` "# Đăng ký nghỉ phép — Yêu cầu"; `:39` "## Quy tắc nghiệp vụ"; `:63` "## Yêu cầu chức năng"; headings, prose and tables are Vietnamese throughout (the `Given`/`When`/`Then` and "As a … I want … so that" frames stay English by rubric). |
+| 1 | Vietnamese document | no | Headings and body prose are Vietnamese (`:1` "# Đăng ký nghỉ phép — Yêu cầu"; `:39` "## Quy tắc nghiệp vụ"), but all 12 FR statement lines keep English frames and English labels: `:65` "- **FR-001**: As a nhân viên, I want gửi yêu cầu nghỉ phép gồm ngày bắt đầu, ngày kết thúc và lý do, so that xin nghỉ đúng quy trình. Fulfils [BR-001, BR-003, BR-005, BR-007]. Priority: Must."; `:93` "- **FR-008**: The system shall ghi nhật ký cho mỗi lần yêu cầu đổi trạng thái. Fulfils [BR-006]. Priority: Must."; the same pattern repeats at `:73`, `:76`, `:79`, `:82`, `:86`, `:89`, `:96`, `:99`, `:102`, `:106`. The spec's English allowlist is IDs, Gherkin keywords and Mermaid only — `skills/business-analysis/references/requirements.md:172` "Output follows the input's language; IDs and Gherkin keywords stay English." and `:174` "- Headings and prose: the input language." — so "As a …, I want …, so that …", "The system shall", "Fulfils […]" and "Priority:" are English prose in a document this check requires to be Vietnamese. |
 | 2 | English IDs | yes | `:41` "- **BR-001**: Nhân viên chỉ gửi được yêu cầu nghỉ khi số ngày phép còn lại lớn hơn hoặc bằng số ngày xin nghỉ. (A-04)"; `:65` "- **FR-001**: As a nhân viên, I want gửi yêu cầu nghỉ phép gồm ngày bắt đầu, ngày kết thúc và lý do, so that xin nghỉ đúng quy trình. Fulfils [BR-001, BR-003, BR-005, BR-007]. Priority: Must."; `:114` "\| NFR-001 \| Must \| Thời gian phản hồi p95 ≤ 2 giây cho các thao tác gửi, duyệt, từ chối ở mức 200 người dùng đồng thời \| A-06 \|". IDs stay `BR-nnn` / `FR-nnn` / `NFR-nnn`. |
 | 3 | English Gherkin keywords | yes | `:66` "- **FR-001.AC1**: Given nhân viên còn 12 ngày phép, When nhân viên gửi yêu cầu nghỉ 3 ngày làm việc, Then yêu cầu được ghi nhận ở trạng thái Chờ duyệt và số ngày phép còn lại vẫn là 12 ngày." — all 32 `FR-nnn.ACn` definitions open with `Given`, `When`, `Then`. |
 | 4 | Lint clean (incl. VI vague terms) | yes | Exit 0 with `0 finding(s) in 1 file(s)`; 12 BR, 12 FR and 7 NFR blocks were parsed, so `vague-term` and `missing-ac` were evaluated rather than skipped. |
 | 5 | Handoff file written | yes | `_git-status.txt:2` "?? docs/ba/2026-11-18-nghi-phep-requirements.md". |
 | 6 | Interview: one question at a time | yes | `raw/green-S6-2.md:428` "**Câu hỏi (một câu, chặn nhiều yêu cầu nhất)**: Ai nhập hạn mức phép đầu năm và điều chỉnh số dư giữa năm — bộ phận Nhân sự hay quản lý trực tiếp?" — the last line of turn 1 (`[User]` turn 2 starts at `:429`). One question. |
 
-**Score: 6 pass / 0 fail.**
+**Score: 5 pass / 1 fail.**
 
 ### NFR Basis audit
 
@@ -74,6 +77,6 @@ input quote. The three actor rows carry input quotes: `:16` "| Nhân sự | Ch�
 
 ### Remaining failures
 
-None. Every S6 check scores yes. One borderline observation, scored yes:
+- **S6#1 Vietnamese document** — the agent drafted the English frame itself before writing anything, `raw/green-S6-2.md:137`: "FR-001: As nhân viên, I want gửi yêu cầu nghỉ phép với ngày bắt đầu, ngày kết thúc, lý do, so that xin nghỉ đúng quy trình." It then shipped that shape at `:65`, with the frame made more English still: "- **FR-001**: As a nhân viên, I want gửi yêu cầu nghỉ phép gồm ngày bắt đầu, ngày kết thúc và lý do, so that xin nghỉ đúng quy trình. Fulfils [BR-001, BR-003, BR-005, BR-007]. Priority: Must." Its only language decision in the log is `raw/green-S6-2.md:375`: "One more: the skill says template headers translated to Vietnamese. Do it." — translation was scoped to headings, so all 12 FR statements kept "As a …" / "The system shall", "Fulfils […]" and "Priority:". The spec allows English only for IDs, Gherkin keywords and Mermaid (`skills/business-analysis/references/requirements.md:172` "Output follows the input's language; IDs and Gherkin keywords stay English." and `:174` "- Headings and prose: the input language."), so the check fails. The baseline run wrote Vietnamese prose with no such frames (`raw/baseline-S6-1-files/docs/leave-request-requirements.md:6` "Cho phép nhân viên tự gửi yêu cầu nghỉ phép, quản lý trực tiếp duyệt hoặc từ chối, và hệ thống"), so this is a with-skill regression, not a rubric artefact. S6#4's lint cannot catch it: the rules cover IDs, ACs and vague terms, not prose language.
 
-- `:65` FR-001 and the other FR statements keep the English "As a … I want … so that" frame around Vietnamese content, and `:80`/`:100` ACs mix "When quản lý trực tiếp mở danh sách, Then hiển thị …". Check #1 asks for Vietnamese prose and headings, which holds; if it were tightened to "no English prose at all", the fixed template frames would fail it.
+The other five checks score yes. S6#2 passes on the same lines that fail #1 — the IDs inside them are English, which is what #2 asks for.
