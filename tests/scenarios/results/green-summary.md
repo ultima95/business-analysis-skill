@@ -80,3 +80,23 @@ Borderline observations recorded while scoring (all scored `yes`, no change prop
 - **S3#2** — `green-S3-1-files/docs/ba/2026-11-18-loyalty-points-brd.md:141` gives Q-01 two
   owners ("Hà (Finance), pending auditor input; Minh to supply the ops view"); the check
   asks for "a Q-nn naming that owner" and both owners are named.
+
+## S4 refactor re-runs (skill fc908f0)
+
+Three fresh S4 reps after the invented-name refactor (`fc908f0`), deepseek-v4.1-flash,
+isolated. Raw logs `raw/green-S4-{2,3,4}.md`; per-rep evidence in `green-S4.md` under
+"REFACTOR iterations". The run-1 scores above are unchanged.
+
+| Rep | S4#1 | S4#2 | S4#3 | S4#4 | S4#5 |
+|---|---|---|---|---|---|
+| 2 | no | yes | yes | yes | yes |
+| 3 | no | yes | yes | yes | yes |
+| 4 | yes | yes | yes | yes | yes |
+| **Tally** | **1/3** | **3/3** | **3/3** | **3/3** | **3/3** |
+
+S4#1 passes 1/3. The targeted class is closed: every inferred actor/role and permission in
+all three reps is tied to an A-nn. Remaining failures are numeric targets — `green-S4-2`
+`:73` "p95 cancellation response ≤ 2 s at 50 concurrent cancellation requests" has no
+A-nn/Q-nn label, and rep 2 also names a system the A-01 row does not cover (`:18`
+"Cancellation service (system)"); `green-S4-3` `:84` "cancellation path available 99.9% of
+minutes per calendar month" is unlabelled while its sibling NFRs carry placeholders.
