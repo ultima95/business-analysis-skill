@@ -100,3 +100,20 @@ all three reps is tied to an A-nn. Remaining failures are numeric targets — `g
 A-nn/Q-nn label, and rep 2 also names a system the A-01 row does not cover (`:18`
 "Cancellation service (system)"); `green-S4-3` `:84` "cancellation path available 99.9% of
 minutes per calendar month" is unlabelled while its sibling NFRs carry placeholders.
+
+### S4 re-runs after required-basis refactor (skill 71424bc)
+
+Three fresh reps after the NFR Basis-column change. Raw logs `raw/green-S4-{5,6,7}.md`;
+per-rep evidence in `green-S4.md` (Iteration 2). Run-1 and iteration-1 scores are unchanged.
+
+| Rep | S4#1 | S4#2 | S4#3 | S4#4 | S4#5 |
+|---|---|---|---|---|---|
+| 5 | yes | yes | yes | yes | yes |
+| 6 | yes | yes | yes | yes | yes |
+| 7 | yes | yes | yes | yes | yes |
+| **Tally** | **3/3** | **3/3** | **3/3** | **3/3** | **3/3** |
+
+S4#1 passes 3/3: every inferred actor/role and every NFR numeric target is tied to a Basis
+entry. One form defect remains: `green-S4-5` NFR-003/NFR-005 put `BR-007` in the Basis cell
+instead of an A-nn/Q-nn, though A-12's blanket "all numeric targets … are working values"
+row still labels those numbers.
