@@ -172,12 +172,17 @@ as written; do not invent a parallel register.
 Output follows the input's language; IDs and Gherkin keywords stay English.
 
 - Headings and prose: the input language.
+- FR statements and labels: translate the frame (`As a … I want … so that …`, `The system
+  shall …`) and the labels (`Fulfils`, `Priority:`); MoSCoW values stay `Must`, `Should`,
+  `Could`, `Won't`.
 - IDs: `BR-001`, `FR-001`, `NFR-001` — never translated.
 - Gherkin keywords: `Given`, `When`, `Then` — never translated; only the prose after each
   keyword is.
 
-Canonical Vietnamese line (English keywords, Vietnamese prose):
+Canonical Vietnamese lines (English IDs and keywords, Vietnamese prose):
 
+- **FR-001**: Là nhân viên, tôi muốn gửi đơn nghỉ phép, để được duyệt đúng quy trình. Đáp ứng [BR-001]. Ưu tiên: Must.
+- **FR-002**: Hệ thống phải ghi nhật ký cho mỗi lần yêu cầu đổi trạng thái. Đáp ứng [BR-002]. Ưu tiên: Should.
 - **FR-001.AC1**: Given nhân viên còn 12 ngày phép, When gửi đơn nghỉ 3 ngày, Then hệ thống ghi nhận còn 9 ngày phép.
 
 ## Lint

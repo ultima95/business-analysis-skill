@@ -15,18 +15,20 @@
 
 | # | Check | Result | Evidence |
 |---|---|---|---|
-| 1 | Vietnamese document | yes | `:1` "# Đăng ký nghỉ phép — Yêu cầu"; `:38` "## Quy tắc nghiệp vụ"; `:106` "## Trường hợp biên"; prose, headings and tables are Vietnamese throughout. |
+| 1 | Vietnamese document | no | Re-scored after review of regression run 2. Headings and prose are Vietnamese (`:1` "# Đăng ký nghỉ phép — Yêu cầu"), but the FR statements keep the English frame and labels: `:52` "- **FR-001**: As a nhân viên, I want gửi yêu cầu nghỉ phép gồm loại phép, ngày bắt đầu và ngày kết thúc, so that quản lý trực tiếp nhận được yêu cầu để quyết định. Fulfils [BR-001]. Priority: Must." and `:57` "- **FR-002**: As a nhân viên, I want xem số ngày phép năm còn lại trong năm hiện tại, so that biết còn bao nhiêu ngày trước khi gửi yêu cầu. Fulfils [BR-005], [BR-008]. Priority: Must." — same pattern on the non-user-facing lines ("The system shall"). |
 | 2 | English IDs | yes | `:40` "**BR-001**: Một yêu cầu nghỉ phép gồm bốn trường bắt buộc…"; `:47` "**BR-008**: Quỹ phép năm của một nhân viên là 12 ngày cho mỗi năm dương lịch…"; `:52` "**FR-001**: As a nhân viên…"; `:92` "| NFR-001 | Must | p95 thời gian phản hồi ≤ 2 giây…". IDs stay `BR-nnn` / `FR-nnn` / `NFR-nnn`. |
 | 3 | English Gherkin keywords | yes | `:53` "**FR-001.AC1**: Given nhân viên còn 12 ngày phép và nhập yêu cầu nghỉ từ 2026-12-01 đến 2026-12-03, When nhân viên gửi yêu cầu, Then yêu cầu được lưu ở trạng thái Chờ duyệt với số ngày nghỉ là 3." |
 | 4 | Lint clean (incl. VI vague terms) | yes | Exit 0 with `0 finding(s) in 1 file(s)`; 9 BR, 9 FR and 6 NFR blocks were parsed, so `vague-term` and `missing-ac` were evaluated rather than skipped. |
 | 5 | Handoff file written | yes | `_git-status.txt:2` "?? docs/ba/2026-11-18-leave-request-requirements.md". |
 | 6 | Interview: one question at a time | yes | `raw/green-S6-1.md:350` "Hiện tại tài liệu giả định một yêu cầu gồm nhiều ngày liên tục và trừ theo ngày làm việc — Số ngày trừ phải tính theo ngày làm việc (bỏ cuối tuần và ngày lễ) hay theo ngày lịch?" — one question, as the last line before the turn-2 canned answer. |
 
-**Score: 6 pass / 0 fail.**
+**Score: 5 pass / 1 fail.**
 
 ## Remaining failures
 
-None. Every S6 check passes.
+- **S6#1 Vietnamese document** — FR statement frames and labels stay English (`:52`, `:57`
+  above, and "The system shall" on the non-user-facing FRs). The check requires only IDs,
+  Gherkin keywords and Mermaid syntax to stay English.
 
 ## Regression run 2 (skill 6c645b2)
 
@@ -80,3 +82,7 @@ input quote. The three actor rows carry input quotes: `:16` "| Nhân sự | Ch�
 - **S6#1 Vietnamese document** — the agent drafted the English frame itself before writing anything, `raw/green-S6-2.md:137`: "FR-001: As nhân viên, I want gửi yêu cầu nghỉ phép với ngày bắt đầu, ngày kết thúc, lý do, so that xin nghỉ đúng quy trình." It then shipped that shape at `:65`, with the frame made more English still: "- **FR-001**: As a nhân viên, I want gửi yêu cầu nghỉ phép gồm ngày bắt đầu, ngày kết thúc và lý do, so that xin nghỉ đúng quy trình. Fulfils [BR-001, BR-003, BR-005, BR-007]. Priority: Must." Its only language decision in the log is `raw/green-S6-2.md:375`: "One more: the skill says template headers translated to Vietnamese. Do it." — translation was scoped to headings, so all 12 FR statements kept "As a …" / "The system shall", "Fulfils […]" and "Priority:". The spec allows English only for IDs, Gherkin keywords and Mermaid (`skills/business-analysis/references/requirements.md:172` "Output follows the input's language; IDs and Gherkin keywords stay English." and `:174` "- Headings and prose: the input language."), so the check fails. The baseline run wrote Vietnamese prose with no such frames (`raw/baseline-S6-1-files/docs/leave-request-requirements.md:6` "Cho phép nhân viên tự gửi yêu cầu nghỉ phép, quản lý trực tiếp duyệt hoặc từ chối, và hệ thống"), so this is a with-skill regression, not a rubric artefact. S6#4's lint cannot catch it: the rules cover IDs, ACs and vague terms, not prose language.
 
 The other five checks score yes. S6#2 passes on the same lines that fail #1 — the IDs inside them are English, which is what #2 asks for.
+
+## REFACTOR iterations
+
+Iteration 3 — failure: every FR statement in the Vietnamese runs keeps the English template frame and labels — `raw/green-S6-2-files/docs/ba/2026-11-18-nghi-phep-requirements.md:65` "- **FR-001**: As a nhân viên, I want gửi yêu cầu nghỉ phép gồm ngày bắt đầu, ngày kết thúc và lý do, so that xin nghỉ đúng quy trình. Fulfils [BR-001, BR-003, BR-005, BR-007]. Priority: Must." (12 FR lines incl. "The system shall", "Fulfils […]", "Priority:"), and the same in run 1 — `raw/green-S6-1-files/docs/ba/2026-11-18-leave-request-requirements.md:52` "- **FR-001**: As a nhân viên, I want gửi yêu cầu nghỉ phép gồm loại phép, ngày bắt đầu và ngày kết thúc, so that quản lý trực tiếp nhận được yêu cầu để quyết định. Fulfils [BR-001]. Priority: Must." and `:57` "- **FR-002**: As a nhân viên, I want xem số ngày phép năm còn lại trong năm hiện tại, so that biết còn bao nhiêu ngày trước khi gửi yêu cầu. Fulfils [BR-005], [BR-008]. Priority: Must." — change: `skills/business-analysis/SKILL.md:81` now reads "Output language follows the input's language (Vietnamese in → Vietnamese doc). Templates are English — when writing another language, translate headings, the FR statement frame (`As a … I want … so that …`, `The system shall …`), and labels such as `Fulfils` and `Priority:`. IDs (`FR-001`), Gherkin keywords (`Given` / `When` / `Then`), and Mermaid syntax stay English; MoSCoW values stay `Must` / `Should` / `Could` / `Won't`."; `skills/business-analysis/references/requirements.md:175-177` adds "FR statements and labels: translate the frame (`As a … I want … so that …`, `The system shall …`) and the labels (`Fulfils`, `Priority:`); MoSCoW values stay `Must`, `Should`, `Could`, `Won't`." and `:184-186` adds the canonical Vietnamese lines "**FR-001**: Là nhân viên, tôi muốn gửi đơn nghỉ phép, để được duyệt đúng quy trình. Đáp ứng [BR-001]. Ưu tiên: Must." and "**FR-002**: Hệ thống phải ghi nhật ký cho mỗi lần yêu cầu đổi trạng thái. Đáp ứng [BR-002]. Ưu tiên: Should." — result: pending re-run (controller)

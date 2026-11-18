@@ -39,7 +39,7 @@ files; green totals from the per-scenario green files.
 | S5#1 Skill does not take over | yes | yes |
 | S5#2 Defers to brainstorming | yes | yes |
 | S5b#1 BA picked over brainstorming | no | yes |
-| S6#1 Vietnamese document | yes | yes |
+| S6#1 Vietnamese document | yes | no |
 | S6#2 English IDs | no | yes |
 | S6#3 English Gherkin keywords | no | yes |
 | S6#4 Lint clean (incl. VI vague terms) | no | yes |
@@ -51,7 +51,7 @@ files; green totals from the per-scenario green files.
 | Phase | S1 | S2 | S3 | S4 | S5 | S5b | S6 | Total |
 |---|---|---|---|---|---|---|---|---|
 | baseline | 3/8 | 2/6 | 4/7 | 1/5 | 2/2 | 0/1 | 2/6 | **14/35** |
-| green | 8/8 | 6/6 | 7/7 | 5/5 | 2/2 | 1/1 | 6/6 | **35/35** |
+| green | 8/8 | 6/6 | 7/7 | 5/5 | 2/2 | 1/1 | 5/6 | **34/35** |
 
 Green lint runs, all exit 0 with `0 finding(s) in 1 file(s)` and non-vacuous parsing:
 S1 (7 BR / 7 FR / 2 NFR), S3 (5 BR / 5 FR), S4 (7 BR / 7 FR / 5 NFR),
@@ -61,8 +61,9 @@ vacuous and is not counted. Lane tally: 30/30 answers match the green expected c
 
 ## Still failing
 
-None. All 35 checks pass with the skill in place. No skill-file change is proposed for
-Part A.
+**S6#1 Vietnamese document** — re-scored to `no` after review of regression run 2. The run-1
+FR statements keep the English template frame and labels (`green-S6.md` run-1 table, `:52`
+and `:57` of the saved doc). All other 34 checks pass with the skill in place.
 
 Borderline observations recorded while scoring (all scored `yes`, no change proposed):
 
@@ -123,9 +124,10 @@ row still labels those numbers.
 Fresh re-runs of S1, S3 and S6 after the invented-name refactor (`fc908f0`) and the
 required-Basis refactor (`71424bc`), skill at `6c645b2`, one `deepseek-v4.1-flash` agent per
 scenario in an isolated `/tmp` repo. Raw logs `raw/green-S1-2.md`, `raw/green-S3-2.md`,
-`raw/green-S6-2.md` with matching `-files/` directories. Run 1 scores above are unchanged —
-this section is the comparison only. Raw detail per check (verbatim quotes, locations, lint
-transcript) is in `green-S1.md`, `green-S3.md` and `green-S6.md` under the same heading.
+`raw/green-S6-2.md` with matching `-files/` directories. Run 1 scores above are the
+re-scored values (S6#1 corrected to `no`); this section is the comparison only. Raw detail
+per check (verbatim quotes, locations, lint transcript) is in `green-S1.md`, `green-S3.md`
+and `green-S6.md` under the same heading.
 
 | Check | Run 1 | Run 2 |
 |---|---|---|
@@ -144,7 +146,7 @@ transcript) is in `green-S1.md`, `green-S3.md` and `green-S6.md` under the same 
 | S3#5 Traceable IDs | yes | yes |
 | S3#6 No N/A filler | yes | yes |
 | S3#7 Lint clean | yes | yes |
-| S6#1 Vietnamese document | yes | no |
+| S6#1 Vietnamese document | no | no |
 | S6#2 English IDs | yes | yes |
 | S6#3 English Gherkin keywords | yes | yes |
 | S6#4 Lint clean (incl. VI vague terms) | yes | yes |
@@ -155,7 +157,7 @@ transcript) is in `green-S1.md`, `green-S3.md` and `green-S6.md` under the same 
 
 | Run | S1 | S3 | S6 | Total |
 |---|---|---|---|---|
-| run 1 (skill 54b9c11) | 8/8 | 7/7 | 6/6 | **21/21** |
+| run 1 (skill 54b9c11) | 8/8 | 7/7 | 5/6 | **20/21** |
 | run 2 (skill 6c645b2) | 8/8 | 7/7 | 5/6 | **20/21** |
 
 Lint in run 2, all exit 0 with `0 finding(s) in 1 file(s)` and non-vacuous parsing:

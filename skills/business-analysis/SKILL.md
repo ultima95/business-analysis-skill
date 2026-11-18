@@ -78,7 +78,7 @@ Then stop and wait. Ask the next question only after the answer arrives or the u
 
 File names: `YYYY-MM-DD-<topic>-requirements.md`, `-brd.md`, `-process.md`, `-gap-analysis.md`, `-stakeholders.md`.
 
-Output language follows the input's language (Vietnamese in → Vietnamese doc). IDs (`FR-001`), Gherkin keywords (`Given` / `When` / `Then`), and Mermaid syntax stay English. Templates are English — translate headings when writing another language.
+Output language follows the input's language (Vietnamese in → Vietnamese doc). Templates are English — when writing another language, translate headings, the FR statement frame (`As a … I want … so that …`, `The system shall …`), and labels such as `Fulfils` and `Priority:`. IDs (`FR-001`), Gherkin keywords (`Given` / `When` / `Then`), and Mermaid syntax stay English; MoSCoW values stay `Must` / `Should` / `Could` / `Won't`.
 
 ## Report format
 
