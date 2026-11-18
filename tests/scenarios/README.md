@@ -55,6 +55,8 @@ fresh agent, first **without** the skill (baseline, `baseline`), later **with** 
 - **Draft scenarios** — S4 — is a single turn.
 - **Lane scenarios** — S5, S5b — are measured by the lane micro-test below.
 
+Note: runs before commit 1a4bb20 (baseline and green run #1): S3 turn 2 was never delivered because of a prompt-extraction bug in the controller's runner; no S3 rubric check depends on turn 2.
+
 ## Results layout
 
 - Raw subject outputs: `tests/scenarios/results/raw/<phase>-<scenario>-<run>.md`
@@ -123,9 +125,9 @@ step. Draft the rest now; do not ask more.
 
 ---
 
-## S2 — Invoice approval process (job 2, single turn)
+## S2 — Invoice approval process (job 2, two turns)
 
-**Setup:** no fixtures; single turn, no canned answer.
+**Setup:** no fixtures; two turns, canned answer below.
 
 **Turn 1 (verbatim):**
 

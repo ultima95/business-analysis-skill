@@ -26,3 +26,7 @@
 ## Remaining failures
 
 None. Every S4 check passes.
+
+## REFACTOR iterations
+
+Iteration 1 — failure: the agent wrote invented actors and a permission as plain fact — doc `:14` "| Customer support agent | cancels on the customer's behalf; decides within policy | needs the `cancel-order` permission |", `:38` "- **BR-003**: Only the Customer who placed the order, or a Support agent holding the `cancel-order` permission, may cancel it. Every other actor is refused.", and the actor rows at `:13-17`, with no A-nn/Q-nn row; the run's own reasoning applied the invented-fact rule to numbers only (`raw/green-S4-1.md:37` "Careful not to invent. Make it assumption.") while planning `raw/green-S4-1.md:63` "- BR-003: Only the customer who placed the order, or a support agent holding the cancel-order permission, may cancel it." — change: `skills/business-analysis/SKILL.md:110` now reads "| A metric, stakeholder, rule, quote, actor, role, team, permission, or system or component name that is not in the input or the user's answers, written as fact | Invented. Every one must be an A-nn or a Q-nn, never a confirmed statement. |" — result: pending re-run (controller)

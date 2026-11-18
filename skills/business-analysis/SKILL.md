@@ -107,7 +107,7 @@ Stop and fix before writing the document:
 
 | Signal | Reality |
 |---|---|
-| A metric, stakeholder, rule, or quote that is not in the input or the user's answers, written as fact | Invented. It must be an A-nn or a Q-nn, never a confirmed statement. |
+| A metric, stakeholder, rule, quote, actor, role, team, permission, or system or component name that is not in the input or the user's answers, written as fact | Invented. Every one must be an A-nn or a Q-nn, never a confirmed statement. |
 | "The ticket implies…", "a sensible default…", "customers expect…" | Still an invention. Record it as A-nn. |
 | More than one question in an interview message | Ask the single highest-impact one, then stop. |
 | Unknowns written as prose ("assumptions to validate") | Use the A-nn and Q-nn tables; every Q-nn names an owner and the requirement it blocks. |
