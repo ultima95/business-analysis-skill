@@ -1,5 +1,33 @@
 # Scenario Harness
 
+## Baseline failures
+
+RED baseline, no skill: 14 checks pass, 21 fail of 35 (S1 3/5, S2 2/4, S3 4/3, S4 1/4, S5 2/0, S5b 0/1, S6 2/4 — pass/fail). Scored evidence in `results/baseline-S*.md` and `results/baseline-lane.md`.
+
+- S1#1: Rules named R1–R9; no `FR-nnn`/`BR-nnn` IDs anywhere in the doc → `references/requirements.md`
+- S1#2: No acceptance criteria; no `FR-nnn.ACn` for any requirement → `references/requirements.md`
+- S1#4: 30-day window stated but `orders.py` cited with no line number → `references/code-recovery.md`
+- S1#7: Lint exit 0 vacuous — zero IDs parsed, so nothing was checked → `templates/requirements.md`
+- S1#8: Four questions asked in one turn instead of one blocking question → `references/elicitation.md`
+- S2#2: As-is diagram is flat `flowchart LR`; no per-role `subgraph` swimlanes → `references/process-analysis.md`
+- S2#3: To-be diagram is `stateDiagram-v2` lifecycle; no role swimlanes → `references/process-analysis.md`
+- S2#4: No SIPOC table; replaced by ad-hoc role and failure tables → `references/process-analysis.md`
+- S2#5: Ten pain points named without the process step where each occurs → `references/process-analysis.md`
+- S3#2: Author-only gaps recorded as `OI-nn`, not `Q-nn` with owner → `references/requirements.md`
+- S3#5: IDs are `FR-1`/`OI-1`; no `BR-nnn`, no `[BR-nnn]` citations, no ACs → `references/requirements.md`
+- S3#7: Lint exit 0 vacuous — `FR-1` too short, zero requirement blocks parsed → `templates/brd.md`
+- S4#1: Invented metrics and "support tickets show" stated as confirmed fact → `SKILL.md`
+- S4#2: Assumptions written as a plain 1–7 list, never `A-nn` → `references/requirements.md`
+- S4#3: No `Q-nn` register; unknowns titled "assumptions to validate", no owner → `references/requirements.md`
+- S4#4: No `Q-nn`, so no question names the requirement it blocks → `references/requirements.md`
+- S5b#1: Frontmatter description loses requirements asks to brainstorming (0/5) → `description`
+- S6#2: IDs are `D1–D6` and `LR-01–LR-10`; no English `BR-nnn`/`FR-nnn` → `references/requirements.md`
+- S6#3: Acceptance criteria are a numbered Vietnamese list; no `Given`/`When`/`Then` → `references/requirements.md`
+- S6#4: Lint exit 0 vacuous — zero ID blocks parsed, VI vague-term rule never ran → `templates/requirements.md`
+- S6#6: Four questions asked in one turn (approval levels, negative balance, accrual, stack) → `references/elicitation.md`
+
+Already PASS at baseline (no dedicated guidance needed): S1#3, S1#5, S1#6, S2#1, S2#6, S3#1, S3#3, S3#4, S3#6, S4#5, S5#1, S5#2, S6#1, S6#5.
+
 Skill-behavior tests for the `business-analysis` skill. Each scenario is run by a
 fresh agent, first **without** the skill (baseline, `baseline`), later **with** it
 (`green`). The same prompt and rubric are reused verbatim by Task 7.
