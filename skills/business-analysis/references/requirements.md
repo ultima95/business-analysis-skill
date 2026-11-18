@@ -62,7 +62,7 @@ Run every story against the six tests before it earns an ID.
 | Small | Can one delivery cover it? Split into two FRs when not. |
 | Testable | Can every AC be observed without reading the code? |
 
-A story that fails Investigate-, Negotiable-, or Testable is rewritten, not annotated.
+A story that fails Independent-, Negotiable-, or Testable is rewritten, not annotated.
 
 ## Acceptance criteria — Gherkin
 

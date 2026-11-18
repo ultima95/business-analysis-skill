@@ -92,7 +92,7 @@ Reply with: file path(s) · counts (BR / FR / NFR / AC / open questions) · top 
 | Functional requirement | `- **FR-001**: As a <role>, I want <capability>, so that <outcome>. Fulfils [BR-001].` |
 | Non-user-facing FR | `- **FR-002**: The system shall <behavior>.` |
 | Acceptance criterion | `- **FR-001.AC1**: Given <context>, When <action>, Then <outcome>.` |
-| Non-functional requirement | `| NFR-001 | <measurable target> |` plus `- **NFR-001.AC1**: Given …, When …, Then ….` |
+| Non-functional requirement | `| NFR-001 | <priority> | <measurable target> |` plus `- **NFR-001.AC1**: Given …, When …, Then ….` |
 | Open question | `| Q-01 | <question> | <owner> | blocks FR-00x |` |
 | Assumption | `| A-01 | <assumption> | <basis in input or impact if false> |` |
 

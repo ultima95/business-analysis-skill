@@ -63,6 +63,12 @@ Out of scope:
 - **NFR-001.AC1**: Given 50 concurrent users, When <action>, Then p95 response time is ≤ 2 s.
 - **NFR-002.AC1**: Given one calendar month, When the month completes, Then availability is at least 99.5 percent.
 
+## Edge cases
+
+| Actor | Entity state | Create | Read | Update | Delete |
+|---|---|---|---|---|---|
+| <role> | <state> | <expected result> | <expected result> | <expected result> | <expected result> |
+
 ## Assumptions, constraints, dependencies
 
 ### Assumptions
