@@ -363,7 +363,20 @@ only the chosen skill name.
 | 3 | `write user stories for a leave-request flow` | `brainstorming` | `business-analysis` |
 | 4 | `analyze our invoice approval process` | `brainstorming` | `business-analysis` |
 | 5 | `phân tích nghiệp vụ quy trình nghỉ phép` | `brainstorming` | `business-analysis` |
+| 6 | `build a leave-request app` | `brainstorming` | `brainstorming` |
 
-> Note: the brief also listed a sixth variant, `build a leave-request app`. It is
-> omitted here to honor the controller's "5 user messages"; S5's `build me a todo
-> app` already exercises the build→no-BA lane.
+> The lane test covers all six brief messages. `build a leave-request app` is the
+> sharper negative case: a build request whose domain noun (`leave-request`) sits
+> adjacent to the BA trigger phrases, which `build me a todo app` does not
+> exercise.
+
+### Messages for `{MESSAGES}` (shuffle order per rep)
+
+```
+1. build me a todo app
+2. gather requirements for a leave-request flow
+3. write user stories for a leave-request flow
+4. analyze our invoice approval process
+5. phân tích nghiệp vụ quy trình nghỉ phép
+6. build a leave-request app
+```
