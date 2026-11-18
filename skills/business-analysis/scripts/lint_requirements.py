@@ -17,6 +17,7 @@ _DEF_PATTERN = re.compile(
 _FENCE_RE = re.compile(r"^\s*```")
 _HEADING_RE = re.compile(r"^\s*#{1,6}\s+")
 _TABLE_RE = re.compile(r"^\s*\|")
+_AQ_REF_RE = re.compile(r"\b[AQ]-\d{2,}\b")
 
 VAGUE_TERMS_EN: tuple[str, ...] = (
     "fast",
@@ -157,10 +158,20 @@ def parse(paths: list[str]) -> tuple[list[Block], list[tuple[str, str, int]]]:
     return blocks, [(id, path, line) for (id, path, line, _) in citations]
 
 
+def _table_cells(line: str) -> list[str] | None:
+    if not _TABLE_RE.match(line):
+        return None
+    return [cell.strip() for cell in line.strip().strip("|").split("|")]
+
+
 def _vague_findings(blocks: list[Block]) -> list[Finding]:
     findings: list[Finding] = []
     for b in blocks:
         text = unicodedata.normalize("NFC", b.text)
+        first, sep, rest = text.partition("\n")
+        cells = _table_cells(first)
+        if b.kind == "NFR" and cells is not None and len(cells) >= 4:
+            text = "|".join(cells[:3]) + sep + rest
         matches: list[tuple[int, str]] = []
         for term, pattern in _VAGUE_PATTERNS:
             for m in pattern.finditer(text):
@@ -186,8 +197,14 @@ def _unmeasurable_findings(
     for b in blocks:
         if b.kind != "NFR":
             continue
-        text = "\n".join([b.text] + [ac.text for ac in ac_defs.get(b.id, [])])
-        stripped = _ID_PATTERN.sub("", text)
+        first = b.text.partition("\n")[0]
+        cells = _table_cells(first)
+        if cells is not None and len(cells) >= 4:
+            definition = cells[2]
+        else:
+            definition = b.text
+        text = "\n".join([definition] + [ac.text for ac in ac_defs.get(b.id, [])])
+        stripped = _AQ_REF_RE.sub("", _ID_PATTERN.sub("", text))
         if not re.search(r"\d", stripped):
             findings.append(
                 Finding(

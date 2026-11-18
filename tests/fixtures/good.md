@@ -16,9 +16,15 @@
 
 ## Non-functional Requirements
 
-| NFR-001 | 99.9 percent uptime per month |
+| NFR-001 | Must | 99.9 percent uptime per month | A-01 |
 
 - **NFR-001.AC1**: Given the service is running, When a month completes, Then uptime is at least 99.9 percent.
+
+## Assumptions
+
+| ID | Assumption | Basis in input, or impact if false |
+|---|---|---|
+| A-01 | Uptime is measured monthly and targeted at 99.9 percent. | Working value set for this analysis; if the provider contract states another figure, the target changes. |
 
 ## Diagram
 

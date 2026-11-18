@@ -246,9 +246,9 @@ on a document that defines no IDs is vacuous, not clean.
 
 | Rule | Fix |
 |---|---|
-| `vague-term` | replace the word with a measurable criterion |
+| `vague-term` | replace the word with a measurable criterion in the target cell; the Basis cell is not scanned |
 | `missing-ac` | add `FR-nnn.ACn` / `NFR-nnn.ACn` |
 | `dangling-ref` | define the cited ID or correct the citation |
 | `duplicate-id` | keep one definition and cite it elsewhere |
-| `unmeasurable-nfr` | add a number to the target or its AC |
+| `unmeasurable-nfr` | add a number to the target cell or the NFR's AC; the Basis cell is not a measurement |
 | `orphan-br` | cite the BR from the FR it drives, or delete it |

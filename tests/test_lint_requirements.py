@@ -102,6 +102,18 @@ class LintRequirementsTest(unittest.TestCase):
         f = run(a="| NFR-001 | p95 page load < 2 s |\n- **NFR-001.AC1**: Given 100 users When open Then p95 < 2 s\n")
         self.assertEqual(f, [])
 
+    def test_unmeasurable_nfr_canonical_row_ignores_basis_digits(self):
+        f = run(a="| NFR-001 | Must | page loads soon enough | A-01 |\n- **NFR-001.AC1**: Given load When open Then page shows\n")
+        self.assertEqual([x.rule for x in f], ["unmeasurable-nfr"])
+        f = run(a="| NFR-001 | Must | p95 ≤ 2 s | A-01 |\n- **NFR-001.AC1**: Given load When open Then p95 is ≤ 2 s\n")
+        self.assertEqual(f, [])
+
+    def test_vague_term_skips_nfr_basis_cell(self):
+        f = run(a='| NFR-001 | Must | p95 ≤ 2 s | "khách nói phải nhanh" |\n- **NFR-001.AC1**: Given 100 users When open Then p95 ≤ 2 s\n')
+        self.assertEqual(f, [])
+        f = run(a="| NFR-001 | Must | nhanh, p95 ≤ 2 s | A-01 |\n- **NFR-001.AC1**: Given 100 users When open Then p95 ≤ 2 s\n")
+        self.assertEqual([x.rule for x in f], ["vague-term"])
+
     def test_cli_exit_codes(self):
         good = str(FIXTURES / "good.md")
         bad = write_tmp("- **FR-001**: The system shall log refunds\n")
