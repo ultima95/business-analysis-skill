@@ -34,6 +34,10 @@ class SkillAssetsTest(unittest.TestCase):
     def test_skill_size(self):
         self.assertLessEqual(len((SKILL / "SKILL.md").read_text().splitlines()), 300)
 
+    def test_requirement_templates_lint_clean(self):
+        for name in ("requirements.md", "brd.md"):
+            self.assertEqual(lr.lint([str(SKILL / "templates" / name)]), [], name)
+
     @unittest.expectedFailure
     def test_skill_links_resolve(self):
         text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
