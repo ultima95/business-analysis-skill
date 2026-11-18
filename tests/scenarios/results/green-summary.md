@@ -8,6 +8,22 @@ Baseline scored files: `baseline-S*.md`, `baseline-lane.md`. Green scored files:
 `yes` / `no` are the rubric result. Baseline totals come from the per-scenario baseline
 files; green totals from the per-scenario green files.
 
+## Current state (skill 9880248)
+
+Latest scored run per scenario. These are not the run-1 totals in the table below.
+
+| Scenario | Latest run | Result |
+|---|---|---|
+| S1 | regression run 2 (skill `6c645b2`) | 8/8 |
+| S2 | run 1 (skill `54b9c11`) | 6/6 |
+| S3 | regression run 2 (skill `6c645b2`) | 7/7 |
+| S4 | iteration 2 re-runs, reps 5–7 (skill `71424bc`) | 5/5 each, 3 reps |
+| S6 | iteration 4 re-runs, reps 6–8 (skill `9880248`) | 6/6 each, 18/18 |
+| Lane | run 1 | 30/30 answers |
+
+S2 and the lane test have not been re-run since `54b9c11`; their rows are the latest evidence,
+not runs against `9880248`.
+
 | Check | Baseline | Green |
 |---|---|---|
 | S1#1 Requirements IDs present | no | yes |
@@ -195,3 +211,21 @@ headings or basis labels stay English: rep 5 uses English section headings throu
 (`:3` "## Context", `:9` "## Actors and stakeholders", and all sections through `:155`
 "## Next step"), and rep 3 keeps `:11` "## Actor và bên liên quan" and `:15` "Input: …" in
 the basis column.
+
+### S6 re-runs after heading-map refactor (skill 9880248)
+
+Three fresh two-turn reps. Raw logs `raw/green-S6-{6,7,8}.md`; per-rep evidence in
+`green-S6.md` (Iteration 4).
+
+| Rep | S6#1 | S6#2 | S6#3 | S6#4 | S6#5 | S6#6 | Pass |
+|---|---|---|---|---|---|---|---|
+| 6 | yes | yes | yes | yes | yes | yes | 6/6 |
+| 7 | yes | yes | yes | yes | yes | yes | 6/6 |
+| 8 | yes | yes | yes | yes | yes | yes | 6/6 |
+| **Tally** | **3/3** | **3/3** | **3/3** | **3/3** | **3/3** | **3/3** | **18/18** |
+
+All headings and FR frames are Vietnamese in the three docs, including the heading set that
+failed in iteration 3. Remaining English is loanwords and abbreviations only (`input` in the
+assumption-table header inherited from the heading map, `repo`, `email`, `ticket`,
+`brainstorming`, `writing-plans`, `Draft`, `BA`, `HR`, `ID`, `p95`, `AC`), none in a
+heading or template label.
