@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 import sys
+import unicodedata
 from collections import defaultdict
 from dataclasses import dataclass
 
@@ -16,6 +17,37 @@ _DEF_PATTERN = re.compile(
 _FENCE_RE = re.compile(r"^\s*```")
 _HEADING_RE = re.compile(r"^\s*#{1,6}\s+")
 _TABLE_RE = re.compile(r"^\s*\|")
+
+VAGUE_TERMS_EN: tuple[str, ...] = (
+    "fast",
+    "quickly",
+    "easy",
+    "user-friendly",
+    "simple",
+    "flexible",
+    "robust",
+    "efficient",
+    "etc.",
+    "and/or",
+    "as appropriate",
+    "TBD",
+    "normally",
+)
+
+VAGUE_TERMS_VI: tuple[str, ...] = (
+    "nhanh",
+    "dễ dàng",
+    "thân thiện",
+    "linh hoạt",
+    "v.v.",
+    "phù hợp",
+    "hợp lý",
+)
+
+_VAGUE_PATTERNS = [
+    (term, re.compile(r"(?<!\w)" + re.escape(term) + r"(?!\w)", re.IGNORECASE))
+    for term in (*VAGUE_TERMS_EN, *VAGUE_TERMS_VI)
+]
 
 
 @dataclass(frozen=True)
@@ -125,6 +157,49 @@ def parse(paths: list[str]) -> tuple[list[Block], list[tuple[str, str, int]]]:
     return blocks, [(id, path, line) for (id, path, line, _) in citations]
 
 
+def _vague_findings(blocks: list[Block]) -> list[Finding]:
+    findings: list[Finding] = []
+    for b in blocks:
+        text = unicodedata.normalize("NFC", b.text)
+        matches: list[tuple[int, str]] = []
+        for term, pattern in _VAGUE_PATTERNS:
+            for m in pattern.finditer(text):
+                matches.append((m.start(), term))
+        matches.sort(key=lambda x: x[0])
+        for start, term in matches:
+            line = b.line + text[:start].count("\n")
+            findings.append(
+                Finding(
+                    b.path,
+                    line,
+                    "vague-term",
+                    f"vague term '{term}' — replace with a measurable criterion",
+                )
+            )
+    return findings
+
+
+def _unmeasurable_findings(
+    blocks: list[Block], ac_defs: dict[str, list[Block]]
+) -> list[Finding]:
+    findings: list[Finding] = []
+    for b in blocks:
+        if b.kind != "NFR":
+            continue
+        text = "\n".join([b.text] + [ac.text for ac in ac_defs.get(b.id, [])])
+        stripped = _ID_PATTERN.sub("", text)
+        if not re.search(r"\d", stripped):
+            findings.append(
+                Finding(
+                    b.path,
+                    b.line,
+                    "unmeasurable-nfr",
+                    f"{b.id} has no number in its definition or acceptance criteria",
+                )
+            )
+    return findings
+
+
 def lint(paths: list[str]) -> list[Finding]:
     blocks, citations = _scan_files(paths)
     findings: list[Finding] = []
@@ -177,6 +252,9 @@ def lint(paths: list[str]) -> list[Finding]:
             findings.append(
                 Finding(b.path, b.line, "orphan-br", f"{b.id} is not cited by any requirement")
             )
+
+    findings.extend(_vague_findings(blocks))
+    findings.extend(_unmeasurable_findings(blocks, ac_defs))
 
     path_order = {path: i for i, path in enumerate(paths)}
     findings.sort(key=lambda f: (path_order.get(f.path, len(paths)), f.line, f.rule))
