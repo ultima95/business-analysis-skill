@@ -169,7 +169,7 @@ as written; do not invent a parallel register.
 
 ## Language
 
-Output follows the input's language; IDs and Gherkin keywords stay English.
+Output follows the input's language; IDs, Gherkin keywords, and Mermaid syntax stay English.
 
 - Headings and prose: the input language.
 - FR statements and labels: translate the frame (`As a … I want … so that …`, `The system
@@ -209,16 +209,16 @@ Template heading and label → Vietnamese (job 1 templates):
 | Source input | Nguồn đầu vào |
 | Input (basis cell) | Đầu vào |
 | Actor | Tác nhân |
-| Does / decides / is informed | Làm / quyết / được thông báo |
+| Does / decides / is informed | Làm / quyết định / được thông báo |
 | Notes | Ghi chú |
 | Basis | Cơ sở |
 | ID | ID |
 | Priority | Ưu tiên |
-| Target | Mục tiêu |
+| Target | Chỉ tiêu |
 | Entity state | Trạng thái đối tượng |
 | Create / Read / Update / Delete | Tạo / Đọc / Sửa / Xóa |
 | Assumption | Giả định |
-| Basis in input, or impact if false | Cơ sở trong input, hoặc ảnh hưởng nếu sai |
+| Basis in input, or impact if false | Cơ sở trong đầu vào, hoặc ảnh hưởng nếu sai |
 | Question | Câu hỏi |
 | Owner | Người trả lời |
 | Blocks | Chặn |
@@ -228,6 +228,9 @@ Template heading and label → Vietnamese (job 1 templates):
 | Objective / Metric / Owner | Mục tiêu / Chỉ số / Chủ sở hữu |
 | Stakeholder / Role / Interest / Influence | Bên liên quan / Vai trò / Quan tâm / Ảnh hưởng |
 | Name / Decision / Date | Tên / Quyết định / Ngày |
+| Field / Value | Trường / Giá trị |
+| Term / Meaning | Thuật ngữ / Ý nghĩa |
+| Source: | Nguồn: |
 
 Canonical Vietnamese lines (English IDs and keywords, Vietnamese prose):
 
