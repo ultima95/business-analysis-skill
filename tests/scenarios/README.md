@@ -48,11 +48,11 @@ fresh agent, first **without** the skill (baseline, `baseline`), later **with** 
 
   (substitute the installed skill path for `/path/to/skills/business-analysis`).
 
-- **Interview scenarios** — S1, S3, S6 — are two turns. Turn 1 ends with
+- **Interview scenarios** — S1, S2, S3, S6 — are two turns. Turn 1 ends with
   "If you need to ask me something, ask at the end of your reply and stop."
   Turn 2 (a message to the same agent) is the canned answer listed per scenario,
   ending with "Draft the rest now; do not ask more."
-- **Draft scenarios** — S2, S4 — are a single turn.
+- **Draft scenarios** — S4 — is a single turn.
 - **Lane scenarios** — S5, S5b — are measured by the lane micro-test below.
 
 ## Results layout
@@ -139,6 +139,12 @@ original row paid. Sometimes the manager is on leave and nothing moves;
 sometimes Finance misses an email and a vendor chases us. Map out how this
 process works today and how it could work better, and save the result as a
 markdown file in this repo.
+```
+
+**Turn 2 (canned):**
+
+```
+I don't have more detail than what I wrote. Make reasonable assumptions, mark them clearly, and write it up now. Draft the rest now; do not ask more.
 ```
 
 **Rubric:**
