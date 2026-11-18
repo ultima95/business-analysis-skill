@@ -30,13 +30,14 @@ table, or bold markup) is the ID followed by `:` or `|`.
 | Functional requirement | `- **FR-001**: As a <role>, I want <capability>, so that <outcome>. Fulfils [BR-001]. Priority: Must.` |
 | Non-user-facing FR | `- **FR-002**: The system shall <behavior>. Fulfils [BR-002]. Priority: Must.` |
 | Acceptance criterion | `- **FR-001.AC1**: Given <context>, When <action>, Then <observable outcome>.` |
-| Non-functional requirement | `\| NFR-001 \| Must \| <measurable target with a number> \|` |
+| Non-functional requirement | `\| NFR-001 \| Must \| <measurable target with a number> \| <basis: input quote, A-nn, or Q-nn> \|` |
 | NFR acceptance criterion | `- **NFR-001.AC1**: Given <load or condition>, When <action>, Then <metric> is <number>.` |
 | Assumption | `\| A-01 \| <assumption> \| <basis in input, or impact if false> \|` |
 | Open question | `\| Q-01 \| <question> \| <owner> \| blocks FR-00x \|` |
 
-The NFR table has three columns: ID, MoSCoW priority, target. The target cell carries the
-number the lint script requires.
+The NFR table has four columns: ID, MoSCoW priority, target, basis. The target cell carries
+the number the lint script requires; the basis cell says where that number came from — a
+short verbatim quote from the input or user answers, an `A-nn`, or a `Q-nn` with its owner.
 
 ## One story = one functional requirement
 
@@ -94,8 +95,9 @@ Write it inline on an FR (`Priority: Must.`) and in the priority column of the N
 
 ## Non-functional requirements
 
-Each NFR states a number and the condition that measures it, or it becomes a Q-nn owned by
-the person who can set the target. Check every category:
+Every NFR target needs a number, and its Basis says where the number came from: a quote from
+the input, an `A-nn` for a working value you set, or a `Q-nn` owned by the person who can set
+the target. Check every category:
 
 | Category | What to measure |
 |---|---|

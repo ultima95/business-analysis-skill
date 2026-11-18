@@ -55,10 +55,10 @@ Out of scope:
 
 ## Non-functional requirements
 
-| ID | Priority | Target |
+| ID | Priority | Target | Basis |
 |---|---|---|
-| NFR-001 | Must | p95 response time ≤ 2 s at 50 concurrent users |
-| NFR-002 | Must | 99.5 percent monthly availability |
+| NFR-001 | Must | p95 response time ≤ 2 s at 50 concurrent users | A-01 |
+| NFR-002 | Must | 99.5 percent monthly availability | A-01 |
 
 - **NFR-001.AC1**: Given 50 concurrent users, When <action>, Then p95 response time is ≤ 2 s.
 - **NFR-002.AC1**: Given one calendar month, When the month completes, Then availability is at least 99.5 percent.

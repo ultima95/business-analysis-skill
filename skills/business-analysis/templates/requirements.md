@@ -10,9 +10,9 @@
 
 ## Actors and stakeholders
 
-| Actor | Does / decides / is informed | Notes |
-|---|---|---|
-| <role> | <trigger, do, decide, or informed> | <constraint or fact from the input> |
+| Actor | Does / decides / is informed | Notes | Basis |
+|---|---|---|---|
+| <role> | <trigger, do, decide, or informed> | <constraint or fact from the input> | <input quote, or A-nn> |
 
 ## Scope
 
@@ -37,9 +37,9 @@ Out of scope:
 
 ## Non-functional requirements
 
-| ID | Priority | Target |
-|---|---|---|
-| NFR-001 | Must | p95 response time ≤ 2 s at 100 concurrent users |
+| ID | Priority | Target | Basis |
+|---|---|---|---|
+| NFR-001 | Must | p95 response time ≤ 2 s at 100 concurrent users | A-01 |
 
 - **NFR-001.AC1**: Given 100 concurrent users, When <action>, Then p95 response time is ≤ 2 s.
 
