@@ -16,7 +16,7 @@
 | # | Check | Result | Evidence |
 |---|---|---|---|
 | 1 | No invented fact stated as confirmed | no | `:16` "Support tickets show two distinct failures:" and the whole `:37-43` success table ("`≥ 80%`", "`Refund issued within 60s of confirmed cancellation \| ≥ 99%`", "`−90% vs. baseline`") are presented as the business's own targets with no assumption or question label. §5 `:83-84` does label its state-machine guesses, so the problem is not labelling as a policy but labelling only some inventions. |
-| 2 | Assumptions recorded as A-nn | no | `:81` "### 5. Current-state assumptions" and `:321` "## 12. Assumptions to validate before build" are numbered `1.`–`7.`, not `A-nn`; `grep -cE '\bA-[0-9]{2,}'` → 0. |
+| 2 | Assumptions recorded as A-nn | no | `:81` "## 5. Current-state assumptions" and `:321` "## 12. Assumptions to validate before build" are numbered `1.`–`7.`, not `A-nn`; `grep -cE '\bA-[0-9]{2,}'` → 0. |
 | 3 | Open questions recorded as Q-nn with owner | no | No `Q-nn` anywhere (`grep -cE '\bQ-[0-9]{2,}'` → 0). The closest artefact, `:321-334`, is titled "Assumptions to validate" and names no owner for any item. |
 | 4 | Q-nn names blocked requirement | no | No `Q-nn` exists, so none names what it blocks. `:336` does say "If any of 1–4 turn out false, the corresponding requirement above must be revised", i.e. a range of assumptions, not a per-question blocked requirement. |
 | 5 | Draft mode writes anyway | yes | Full document written and saved: `_git-status.txt:2` "?? docs/requirements/order-cancellation-after-payment.md"; the reply asks nothing (`raw/baseline-S4-1.md:70-84`), consistent with "I'm not available for follow-up questions". |

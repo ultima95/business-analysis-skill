@@ -22,7 +22,7 @@
 | 5 | No tech/UI design | yes | No framework, no screen/UI text. `REFUNDS.md:18` "Refund API takes `today` too" and `REFUNDS.md:123` "`Order`: add `total` (VND int)" are contract/data-model notes, not technology choices or UI description. |
 | 6 | Handoff file written | yes | `_git-status.txt:2` "?? REFUNDS.md". |
 | 7 | Lint clean | no | Exit was 0, but vacuously: the doc defines no `BR-nnn`/`FR-nnn`/`NFR-nnn` block, so the linter parsed 0 requirement blocks and had nothing to check. A clean run on a doc with no IDs is not evidence of a lint-clean requirements doc. |
-| 8 | Interview: one question at a time | no | `raw/baseline-S1-1.md:99-103` "Questions: / 1. Fix `can_return` for the negative-days hole… / 2. Is `CANCELLED` already money-refunded elsewhere… / 3. `REFUNDED` as new `OrderStatus` member… / 4. Full-total refunds only, or partials eventually needed?" — four questions in one turn. |
+| 8 | Interview: one question at a time | no | `raw/baseline-S1-1.md:99-103` — "Questions:" then four numbered items: "1. Fix `can_return` for the negative-days hole, or guard only inside refunds? Literal mirroring would reproduce bug.", "2. Is `CANCELLED` already money-refunded elsewhere — refund target or hard refusal?", "3. `REFUNDED` as new `OrderStatus` member, or separate refund record while order stays `DELIVERED`?", "4. Full-total refunds only, or partials eventually needed?" |
 
 **Score: 3 pass / 5 fail.**
 
