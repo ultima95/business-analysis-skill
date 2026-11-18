@@ -176,3 +176,22 @@ Both refactor targets hold in all three docs:
 Still failing in this subset: **S6#1 Vietnamese document**. All 12 FR statement lines keep English frames and labels, e.g. `:65` "- **FR-001**: As a nhân viên, I want gửi yêu cầu nghỉ phép gồm ngày bắt đầu, ngày kết thúc và lý do, so that xin nghỉ đúng quy trình. Fulfils [BR-001, BR-003, BR-005, BR-007]. Priority: Must." and `:93` "- **FR-008**: The system shall ghi nhật ký cho mỗi lần yêu cầu đổi trạng thái. Fulfils [BR-006]. Priority: Must.", repeated at `:73`, `:76`, `:79`, `:82`, `:86`, `:89`, `:96`, `:99`, `:102`, `:106`. The spec lets only IDs, Gherkin keywords and Mermaid stay English (`skills/business-analysis/references/requirements.md:172`, `:174`), and the baseline run wrote Vietnamese prose without such frames (`raw/baseline-S6-1-files/docs/leave-request-requirements.md:6`), so this is a with-skill regression. Lint cannot see it — the rules cover IDs, ACs and vague terms, not prose language. The agent's own reasoning is in `green-S6.md` under "Remaining failures".
 
 The only new content versus run 1 is S3 recording the 30-percent retention target from turn 2 (the earlier S3 runs never received turn 2). Other borderline observations, scored yes, are listed per scenario: S3 FR-005/FR-006 cite no `[BR-nnn]` (no decided rule covers reporting) and S1 NFR-002's "append-only log" wording.
+
+## S6 re-runs after output-language refactor (skill 7297ac4)
+
+Three fresh two-turn S6 reps with the skill at `7297ac4`, `deepseek-v4.1-flash`, isolated
+repos. Raw logs `raw/green-S6-{3,4,5}.md`; per-rep evidence in `green-S6.md` under
+"REFACTOR iterations". Earlier scores are unchanged.
+
+| Rep | S6#1 | S6#2 | S6#3 | S6#4 | S6#5 | S6#6 | Pass |
+|---|---|---|---|---|---|---|---|
+| 3 | no | yes | yes | yes | yes | yes | 5/6 |
+| 4 | yes | yes | yes | yes | yes | yes | 6/6 |
+| 5 | no | yes | yes | yes | yes | yes | 5/6 |
+| **Tally** | **1/3** | **3/3** | **3/3** | **3/3** | **3/3** | **3/3** | **16/18** |
+
+The FR statement frame and labels are Vietnamese in all three reps. S6#1 still fails where
+headings or basis labels stay English: rep 5 uses English section headings throughout
+(`:3` "## Context", `:9` "## Actors and stakeholders", and all sections through `:155`
+"## Next step"), and rep 3 keeps `:11` "## Actor và bên liên quan" and `:15` "Input: …" in
+the basis column.
