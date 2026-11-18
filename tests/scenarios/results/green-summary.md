@@ -1,16 +1,8 @@
 # GREEN summary — baseline vs. with-skill rubric
 
-Skill under test: `skills/business-analysis/` at commit `54b9c11`, read from
-`/tmp/ba-skill-under-test/business-analysis/SKILL.md` by every green run.
-Baseline scored files: `baseline-S*.md`, `baseline-lane.md`. Green scored files:
-`green-S*.md`, `green-lane.md`.
-
-`yes` / `no` are the rubric result. Baseline totals come from the per-scenario baseline
-files; green totals from the per-scenario green files.
-
 ## Current state (skill 9880248)
 
-Latest scored run per scenario. These are not the run-1 totals in the table below.
+Latest scored run per scenario. These are not the run-1 totals in the tables below.
 
 | Scenario | Latest run | Result |
 |---|---|---|
@@ -23,6 +15,16 @@ Latest scored run per scenario. These are not the run-1 totals in the table belo
 
 S2 and the lane test have not been re-run since `54b9c11`; their rows are the latest evidence,
 not runs against `9880248`.
+
+## Run 1 (skill 54b9c11) — historical
+
+Skill under test: `skills/business-analysis/` at commit `54b9c11`, read from
+`/tmp/ba-skill-under-test/business-analysis/SKILL.md` by every green run.
+Baseline scored files: `baseline-S*.md`, `baseline-lane.md`. Green scored files:
+`green-S*.md`, `green-lane.md`.
+
+`yes` / `no` are the rubric result. Baseline totals come from the per-scenario baseline
+files; green totals from the per-scenario green files.
 
 | Check | Baseline | Green |
 |---|---|---|
@@ -62,7 +64,7 @@ not runs against `9880248`.
 | S6#5 Handoff file written | yes | yes |
 | S6#6 Interview: one question at a time | no | yes |
 
-## Totals
+### Totals (run 1, skill 54b9c11 — historical)
 
 | Phase | S1 | S2 | S3 | S4 | S5 | S5b | S6 | Total |
 |---|---|---|---|---|---|---|---|---|
@@ -75,7 +77,7 @@ S6 (9 BR / 9 FR / 6 NFR). S2 is a process doc with no requirement IDs; its lint 
 vacuous and is not counted. Lane tally: 30/30 answers match the green expected column,
 5/5 for every message.
 
-## Still failing
+### Still failing in run 1 (historical, skill 54b9c11)
 
 **S6#1 Vietnamese document** — re-scored to `no` after review of regression run 2. The run-1
 FR statements keep the English template frame and labels (`green-S6.md` run-1 table, `:52`

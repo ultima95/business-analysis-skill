@@ -179,7 +179,7 @@ Output follows the input's language; IDs, Gherkin keywords, and Mermaid syntax s
 - Gherkin keywords: `Given`, `When`, `Then` — never translated; only the prose after each
   keyword is.
 
-Template heading and label → Vietnamese (job 1 templates):
+Template heading and label → Vietnamese (all templates — job 1, job 2, and job 3):
 
 | English template text | Tiếng Việt |
 |---|---|
@@ -231,6 +231,40 @@ Template heading and label → Vietnamese (job 1 templates):
 | Field / Value | Trường / Giá trị |
 | Term / Meaning | Thuật ngữ / Ý nghĩa |
 | Source: | Nguồn: |
+| Topic / Process name | Chủ đề / Tên quy trình |
+| Process Document | Tài liệu quy trình |
+| Gap Analysis | Phân tích khoảng trống |
+| Stakeholder Register | Sổ đăng ký các bên liên quan |
+| Process summary | Tóm tắt quy trình |
+| SIPOC | SIPOC |
+| As-is process | Quy trình hiện tại |
+| Steps | Các bước |
+| Swimlane | Sơ đồ luồng vai trò |
+| Pain points | Điểm đau |
+| Root cause | Nguyên nhân gốc |
+| 5 Whys — top pain point | 5 Whys — điểm đau chính |
+| Fishbone — when causes branch | Xương cá — khi nguyên nhân phân nhánh |
+| To-be process | Quy trình tương lai |
+| Proposal — not an agreed design | Đề xuất — chưa phải thiết kế đã thống nhất |
+| Gaps | Khoảng trống |
+| Trigger | Điểm kích hoạt |
+| Outcome | Kết quả |
+| Volume | Khối lượng |
+| Typical duration | Thời gian điển hình |
+| Suppliers / Inputs / Process / Outputs / Customers | Nhà cung cấp / Đầu vào / Quy trình / Đầu ra / Khách hàng |
+| Step / Role / Activity / Input / Output / Tool / system / Wait time | Bước / Vai trò / Hoạt động / Đầu vào / Đầu ra / Công cụ / hệ thống / Thời gian chờ |
+| Pain / Type / Lean waste (DOWNTIME) / Evidence / Impact | Điểm đau / Loại / Lãng phí tinh gọn (DOWNTIME) / Bằng chứng / Ảnh hưởng |
+| To-be step / Change / As-is step replaced / Pain point addressed | Bước tương lai / Thay đổi / Bước hiện tại được thay thế / Điểm đau được xử lý |
+| Area / As-is / To-be / Gap / Change needed | Lĩnh vực / Hiện trạng / Tương lai / Khoảng trống / Thay đổi cần thiết |
+| Purpose | Mục đích |
+| Current state | Hiện trạng |
+| Target state | Trạng thái mục tiêu |
+| Risks | Rủi ro |
+| Next steps | Các bước tiếp theo |
+| Area / Current / Target / Gap / Impact / Priority / Recommendation | Lĩnh vực / Hiện tại / Mục tiêu / Khoảng trống / Ảnh hưởng / Ưu tiên / Đề xuất |
+| Risk / Likelihood / Impact / Mitigation / Owner | Rủi ro / Khả năng xảy ra / Ảnh hưởng / Giảm thiểu / Người phụ trách |
+| Action / Owner / Due / Depends on | Hành động / Người phụ trách / Hạn chót / Phụ thuộc vào |
+| Stakeholder / role / Group / Interest / Influence (H/M/L) / Expectations / Engagement approach / Communication | Bên liên quan / vai trò / Nhóm / Quan tâm / Ảnh hưởng (H/M/L) / Kỳ vọng / Cách tiếp cận tham gia / Truyền thông |
 
 Canonical Vietnamese lines (English IDs and keywords, Vietnamese prose):
 
@@ -240,9 +274,10 @@ Canonical Vietnamese lines (English IDs and keywords, Vietnamese prose):
 
 ## Lint
 
-Run `python3 scripts/lint_requirements.py <files…>` on every requirements-bearing document,
-with all files of one analysis in a single call — they share one ID namespace. A clean exit
-on a document that defines no IDs is vacuous, not clean.
+Run `python3 scripts/lint_requirements.py <files…>` — run from this skill's directory,
+passing absolute or repo-relative paths to the documents — on every requirements-bearing
+document, with all files of one analysis in a single call — they share one ID namespace. A
+clean exit on a document that defines no IDs is vacuous, not clean.
 
 | Rule | Fix |
 |---|---|

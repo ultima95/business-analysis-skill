@@ -40,13 +40,22 @@ fresh agent, first **without** the skill (baseline, `baseline`), later **with** 
   Do not invoke or read any skills.
   ```
 
-- **Skill runs** (Task 7) prefix every subject prompt with:
+- **Skill runs** (Task 7) first copy the skill out of this repo:
 
   ```
-  Read and follow /path/to/skills/business-analysis/SKILL.md.
+  rm -rf /tmp/ba-skill-under-test
+  mkdir -p /tmp/ba-skill-under-test
+  cp -R skills/business-analysis /tmp/ba-skill-under-test/business-analysis
   ```
 
-  (substitute the installed skill path for `/path/to/skills/business-analysis`).
+  Point every subject at the copy — never at the repo path, which exposes
+  `tests/scenarios/` and its rubrics to the subject. Prefix each prompt with:
+
+  ```
+  Read and follow /tmp/ba-skill-under-test/business-analysis/SKILL.md.
+  ```
+
+  Record the skill commit under test in each scored file and raw log header.
 
 - **Interview scenarios** — S1, S2, S3, S6 — are two turns. Turn 1 ends with
   "If you need to ask me something, ask at the end of your reply and stop."

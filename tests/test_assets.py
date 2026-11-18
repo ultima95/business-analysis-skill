@@ -70,6 +70,11 @@ class SkillAssetsTest(unittest.TestCase):
             kinds = {block.kind for block in blocks}
             self.assertTrue({"BR", "FR", "NFR", "AC"} <= kinds, (name, sorted(kinds)))
 
+    def test_process_templates_define_no_ids(self):
+        for name in ("process-doc.md", "gap-analysis.md", "stakeholder-register.md"):
+            blocks, _ = lr.parse([str(SKILL / "templates" / name)])
+            self.assertEqual(blocks, [], name)
+
     def test_mermaid_blocks_well_formed(self):
         blocks = mermaid_blocks(SKILL / "references", SKILL / "templates")
         self.assertTrue(blocks)

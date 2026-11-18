@@ -91,6 +91,9 @@ register and does not satisfy these slots.
 | `Owner` | a role or named person who can answer it |
 | `Blocks` | at least one requirement ID (`FR-004`), or `all FRs for <area>` when the doc has none yet |
 
+In a process document (no requirement IDs), the `Blocks` cell names the process step (`P3`)
+or gap instead.
+
 Every unknown goes in exactly one table. If only someone else can answer it, it is a Q-nn;
 if you filled in a working value so writing could continue, it is an A-nn. The impact column
 records what changes if the assumption is wrong — it does not move the row to the Q-nn table.

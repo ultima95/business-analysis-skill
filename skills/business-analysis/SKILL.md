@@ -65,7 +65,7 @@ Then stop and wait. Ask the next question only after the answer arrives or the u
 4. **Pick the mode** (table above). Interview: one question at a time by impact. Draft: record each gap as A-nn or Q-nn.
 5. **Analyze** using the job's reference.
 6. **Write** from the job's template; delete sections that do not apply (never "N/A"). When the input is not English, write every template heading and label in the input language before filling it — IDs, Gherkin keywords, Mermaid syntax, and MoSCoW values stay English; the Vietnamese heading map is in `references/requirements.md`.
-7. **Lint** every doc that contains requirement IDs: `python3 scripts/lint_requirements.py <files…>`. Fix each finding or record why it stays (a genuinely qualitative NFR becomes a Q-nn). Pass all files of one analysis in a single call — they share one ID namespace. Lint sets that contain a requirements-bearing doc (handoff or BRD).
+7. **Lint** every doc that contains requirement IDs: `python3 scripts/lint_requirements.py <files…>` — run from this skill's directory, passing absolute or repo-relative paths to the documents. Fix each finding or record why it stays (a genuinely qualitative NFR becomes a Q-nn). Pass all files of one analysis in a single call — they share one ID namespace. Lint only a document set that contains a handoff or BRD.
 8. **Report** in the format below.
 
 ## Output location, names, language
@@ -89,7 +89,7 @@ Reply with: file path(s) · counts (BR / FR / NFR / AC / open questions) · top 
 | Element | Canonical form |
 |---|---|
 | Business rule | `- **BR-001**: <rule>.` |
-| Functional requirement | `- **FR-001**: As a <role>, I want <capability>, so that <outcome>. Fulfils [BR-001].` |
+| Functional requirement | `- **FR-001**: As a <role>, I want <capability>, so that <outcome>. Fulfils [BR-001]. Priority: Must.` |
 | Non-user-facing FR | `- **FR-002**: The system shall <behavior>.` |
 | Acceptance criterion | `- **FR-001.AC1**: Given <context>, When <action>, Then <outcome>.` |
 | Non-functional requirement | `| NFR-001 | <priority> | <measurable target> | <basis: input quote, A-nn, or Q-nn> |` plus `- **NFR-001.AC1**: Given …, When …, Then ….` |
