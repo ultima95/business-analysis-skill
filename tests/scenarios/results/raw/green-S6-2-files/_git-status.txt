@@ -1,0 +1,2 @@
+?? .commandcode/taste/taste.md
+?? docs/ba/2026-11-18-nghi-phep-requirements.md

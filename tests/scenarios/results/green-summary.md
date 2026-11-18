@@ -117,3 +117,62 @@ S4#1 passes 3/3: every inferred actor/role and every NFR numeric target is tied 
 entry. One form defect remains: `green-S4-5` NFR-003/NFR-005 put `BR-007` in the Basis cell
 instead of an A-nn/Q-nn, though A-12's blanket "all numeric targets … are working values"
 row still labels those numbers.
+
+## Regression run 2 (skill 6c645b2)
+
+Fresh re-runs of S1, S3 and S6 after the invented-name refactor (`fc908f0`) and the
+required-Basis refactor (`71424bc`), skill at `6c645b2`, one `deepseek-v4.1-flash` agent per
+scenario in an isolated `/tmp` repo. Raw logs `raw/green-S1-2.md`, `raw/green-S3-2.md`,
+`raw/green-S6-2.md` with matching `-files/` directories. Run 1 scores above are unchanged —
+this section is the comparison only. Raw detail per check (verbatim quotes, locations, lint
+transcript) is in `green-S1.md`, `green-S3.md` and `green-S6.md` under the same heading.
+
+| Check | Run 1 | Run 2 |
+|---|---|---|
+| S1#1 Requirements IDs present | yes | yes |
+| S1#2 Acceptance criteria present | yes | yes |
+| S1#3 Exception paths covered | yes | yes |
+| S1#4 30-day rule recovered with file:line | yes | yes |
+| S1#5 No tech/UI design | yes | yes |
+| S1#6 Handoff file written | yes | yes |
+| S1#7 Lint clean | yes | yes |
+| S1#8 Interview: one question at a time | yes | yes |
+| S3#1 User asked only answerable gaps | yes | yes |
+| S3#2 Author-only gaps become Q-nn with owner | yes | yes |
+| S3#3 Both decided rules captured | yes | yes |
+| S3#4 Expiry contradiction surfaced | yes | yes |
+| S3#5 Traceable IDs | yes | yes |
+| S3#6 No N/A filler | yes | yes |
+| S3#7 Lint clean | yes | yes |
+| S6#1 Vietnamese document | yes | yes |
+| S6#2 English IDs | yes | yes |
+| S6#3 English Gherkin keywords | yes | yes |
+| S6#4 Lint clean (incl. VI vague terms) | yes | yes |
+| S6#5 Handoff file written | yes | yes |
+| S6#6 Interview: one question at a time | yes | yes |
+
+### Totals (regression run 2)
+
+| Run | S1 | S3 | S6 | Total |
+|---|---|---|---|---|
+| run 1 (skill 54b9c11) | 8/8 | 7/7 | 6/6 | **21/21** |
+| run 2 (skill 6c645b2) | 8/8 | 7/7 | 6/6 | **21/21** |
+
+Lint in run 2, all exit 0 with `0 finding(s) in 1 file(s)` and non-vacuous parsing:
+S1 (12 BR / 9 FR / 3 NFR), S3 (2 BR / 6 FR / 4 NFR), S6 (12 BR / 12 FR / 7 NFR).
+
+Both refactor targets hold in all three docs:
+
+- **NFR Basis column** — every NFR row in S1, S3 and S6 carries a Basis cell that is an input
+  quote, an `A-nn` or a `Q-nn`. No row is blank or self-referential.
+- **Invented names** — no actor, permission, system name or business number is stated as fact
+  without an `A-nn`/`Q-nn` or an input quote. Every actor row in S1 and S6 has a Basis cell;
+  S3's stakeholders all come from the transcript. Remaining unlabelled numbers are test-batch
+  scales inside NFR targets (S1 NFR-003 "1,000-refund reconciliation", S6 NFR-003 "40 kịch
+  bản", S6 NFR-007 "20 thao tác"); none of them states business behaviour.
+
+Still failing: none in this subset. The only new behaviour versus run 1 is S3 recording the
+30-percent retention target from turn 2 (the earlier S3 runs never received turn 2). Borderline
+observations, all scored yes, are listed per scenario: S3 FR-005/FR-006 cite no `[BR-nnn]`
+(no decided rule covers reporting), S1 NFR-002's "append-only log" wording, and S6's English
+"As a … I want" template frames.
