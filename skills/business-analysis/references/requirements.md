@@ -179,6 +179,56 @@ Output follows the input's language; IDs and Gherkin keywords stay English.
 - Gherkin keywords: `Given`, `When`, `Then` — never translated; only the prose after each
   keyword is.
 
+Template heading and label → Vietnamese (job 1 templates):
+
+| English template text | Tiếng Việt |
+|---|---|
+| Context | Bối cảnh |
+| Document control | Kiểm soát tài liệu |
+| Executive summary | Tóm tắt điều hành |
+| Business objectives and success metrics | Mục tiêu kinh doanh và chỉ số thành công |
+| Background / as-is | Bối cảnh / hiện trạng |
+| Actors and stakeholders | Tác nhân và bên liên quan |
+| Stakeholders | Các bên liên quan |
+| Scope | Phạm vi |
+| Business rules | Quy tắc nghiệp vụ |
+| Functional requirements | Yêu cầu chức năng |
+| Non-functional requirements | Yêu cầu phi chức năng |
+| Edge cases | Trường hợp biên |
+| Rules recovered from code | Quy tắc khôi phục từ mã nguồn |
+| Assumptions, constraints, dependencies | Giả định, ràng buộc, phụ thuộc |
+| Assumptions | Giả định |
+| Constraints | Ràng buộc |
+| Dependencies | Phụ thuộc |
+| Open questions | Câu hỏi mở |
+| Glossary | Thuật ngữ |
+| Sign-off | Phê duyệt |
+| Next step | Bước tiếp theo |
+| Problem | Vấn đề |
+| Why now | Vì sao bây giờ |
+| Source input | Nguồn đầu vào |
+| Input (basis cell) | Đầu vào |
+| Actor | Tác nhân |
+| Does / decides / is informed | Làm / quyết / được thông báo |
+| Notes | Ghi chú |
+| Basis | Cơ sở |
+| ID | ID |
+| Priority | Ưu tiên |
+| Target | Mục tiêu |
+| Entity state | Trạng thái đối tượng |
+| Create / Read / Update / Delete | Tạo / Đọc / Sửa / Xóa |
+| Assumption | Giả định |
+| Basis in input, or impact if false | Cơ sở trong input, hoặc ảnh hưởng nếu sai |
+| Question | Câu hỏi |
+| Owner | Người trả lời |
+| Blocks | Chặn |
+| Fulfils | Đáp ứng |
+| In scope / Out of scope | Trong phạm vi / Ngoài phạm vi |
+| Version / Date / Author / Status | Phiên bản / Ngày / Tác giả / Trạng thái |
+| Objective / Metric / Owner | Mục tiêu / Chỉ số / Chủ sở hữu |
+| Stakeholder / Role / Interest / Influence | Bên liên quan / Vai trò / Quan tâm / Ảnh hưởng |
+| Name / Decision / Date | Tên / Quyết định / Ngày |
+
 Canonical Vietnamese lines (English IDs and keywords, Vietnamese prose):
 
 - **FR-001**: Là nhân viên, tôi muốn gửi đơn nghỉ phép, để được duyệt đúng quy trình. Đáp ứng [BR-001]. Ưu tiên: Must.

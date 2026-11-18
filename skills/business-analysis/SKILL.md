@@ -64,7 +64,7 @@ Then stop and wait. Ask the next question only after the answer arrives or the u
 3. **Run the gap-finder** (`references/elicitation.md`) → gap list.
 4. **Pick the mode** (table above). Interview: one question at a time by impact. Draft: record each gap as A-nn or Q-nn.
 5. **Analyze** using the job's reference.
-6. **Write** from the job's template; delete sections that do not apply (never "N/A").
+6. **Write** from the job's template; delete sections that do not apply (never "N/A"). When the input is not English, write every template heading and label in the input language before filling it — IDs, Gherkin keywords, Mermaid syntax, and MoSCoW values stay English; the Vietnamese heading map is in `references/requirements.md`.
 7. **Lint** every doc that contains requirement IDs: `python3 scripts/lint_requirements.py <files…>`. Fix each finding or record why it stays (a genuinely qualitative NFR becomes a Q-nn). Pass all files of one analysis in a single call — they share one ID namespace. Lint sets that contain a requirements-bearing doc (handoff or BRD).
 8. **Report** in the format below.
 
