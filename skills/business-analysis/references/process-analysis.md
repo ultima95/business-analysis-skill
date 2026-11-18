@@ -102,9 +102,9 @@ fixed, so the `Step` column is required and may hold several steps (`P3–P5`).
 | Step | Pain | Type | Lean waste (DOWNTIME) | Evidence | Impact |
 |---|---|---|---|---|---|
 | P3 | Manager on leave, nothing moves | wait | Waiting | <input quote or observation> | <days lost per case> |
-| P2 → P3 | Approval sits in one inbox | handoff | Transport | <input quote> | <cases stalled per month> |
+| P2 → P3 | Approval sits in one inbox | handoff | Transportation | <input quote> | <cases stalled per month> |
 | P4 → P1 | Changes requested, row re-entered | rework | Defects | <input quote> | <rework frequency> |
-| P3 | Single approver for every amount | approval | Over-processing | <input quote> | <queue growth> |
+| P3 | Single approver for every amount | approval | Extra-processing | <input quote> | <queue growth> |
 | P5 | Approved rows copied by hand | manual re-entry | Defects | <input quote> | <keying error rate> |
 
 Required parts:
@@ -142,7 +142,7 @@ When causes branch across categories, draw a `mindmap` instead of a linear 5 Why
 
 ```mermaid
 mindmap
-  root((Cases stall in approval))
+  root((P3 — Cases stall in approval))
     People
       Manager on leave
       No named delegate

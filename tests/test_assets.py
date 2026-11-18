@@ -1,5 +1,6 @@
 import re
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -29,6 +30,8 @@ def mermaid_blocks(*dirs):
                     continue
                 if in_mermaid:
                     current.append(line)
+            if in_mermaid:
+                raise ValueError(f"unclosed ```mermaid fence in {path}")
     return blocks
 
 
@@ -78,6 +81,13 @@ class SkillAssetsTest(unittest.TestCase):
             self.assertEqual(len(subs), len(ends), path)
             for line in subs:
                 self.assertRegex(line, r'^\s*subgraph\s+\w+\s*\["[^"]+"\]', path)
+
+    def test_mermaid_blocks_rejects_unclosed_fence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "broken.md"
+            path.write_text("```mermaid\nflowchart LR\n", encoding="utf-8")
+            with self.assertRaises(ValueError):
+                mermaid_blocks(directory)
 
     def test_skill_links_resolve(self):
         text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
